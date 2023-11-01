@@ -34,11 +34,13 @@ export default function Home() {
   }, []);
 
   const login = async () => {
+
+    // check if metamask is installed
     if (typeof window.ethereum === 'undefined') {
       alert("pls install metamask to use this feature");
       return;
     }
-    
+
     const provider = new ethers.BrowserProvider(window.ethereum, "any");
     const signer = await provider.getSigner();
     await provider.send("eth_requestAccounts", []);
@@ -88,23 +90,23 @@ export default function Home() {
     await lf.removeItem("temp_address:current");
     setUser(null, "temp_current");
     setIsWalletConnected(false);
-    console.log("<<logout()");
+    console.log("logged out()");
   };
 
   const handleLoginClick = async () => {
     try {
       login();
-      console.log("<<handleLoginClick()");
+      console.log("logged in");
     } catch (e) {
-      console.error("handleLoginClick", e);
+      console.error("Couldn't log in", e);
     }
   };
 
-  const handleAddClick = async () => {
+  const handleSubmit = async () => {
     const UserData = { name: name, age: Number(age), country: country };
 
     try {
-      const res = await db.add(UserData, Workers);
+      const res = await db.add(UserData, "Workers");
       console.log("submitted: ", res);
       if (res) {
         alert("Data submitted sucessfully");
@@ -126,8 +128,8 @@ export default function Home() {
           backgroundColor: "#000000",
         }}
       >
-        <br />
-        <br />
+        
+        {/* connect wallet logic */}
         <div className="flex justify-end px-[30px] sm:px-[50px]">
           {!isNil(user) ? (
             <button
@@ -146,11 +148,14 @@ export default function Home() {
           )}
         </div>
 
+
+
         <h1 className="flex pb-[100px] sm:pb-[150px] px-[60px] sm:mx-[0px] text-center sm:px-[0px] font-semibold leading-snug justify-center text-5xl sm:text-5xl justify-center py-[40px]">
           Dive into a Decentralised Database with Weavedb
         </h1>
 
-        <form
+
+        <div
           className="grid items-center 
           justify-center px-[60px] sm:px-[0px]"
         >
@@ -224,7 +229,7 @@ export default function Home() {
           ) : (
             <button
               className="bg-[#6442af] border rounded  px-2 py-2"
-              onClick={handleAddClick}
+              onClick={handleSubmit}
             >
               Submit
             </button>
@@ -239,7 +244,7 @@ export default function Home() {
           >
             Contract Transactions
           </a>
-        </form>
+        </div>
       </div>
     </>
   );
