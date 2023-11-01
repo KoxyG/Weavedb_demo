@@ -118,6 +118,7 @@ export default function Home() {
       <div
         style={{
           color: "white",
+          backgroundColor: "#000000",
         }}
       >
         <br />
