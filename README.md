@@ -47,5 +47,5 @@ Provide detailed steps on how to install and configure your project.
 
 ## Links
 
---Link to the part one technical post on medium (https://medium.com/@devkoxy/getting-started-with-weavedb-the-database-of-web3-c3f943b1772b)
+- [Link to the part one technical post on medium](https://medium.com/@devkoxy/getting-started-with-weavedb-the-database-of-web3-c3f943b1772b)
 
