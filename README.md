@@ -45,4 +45,7 @@ Provide detailed steps on how to install and configure your project.
 - [WeaveDB](https://docs.weavedb.dev/)
 - [Ether.js](https://docs.ethers.io/v5/)
 
+## Links
+
+--Link to the part one technical post on medium (https://medium.com/@devkoxy/getting-started-with-weavedb-the-database-of-web3-c3f943b1772b)
 
