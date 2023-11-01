@@ -34,6 +34,11 @@ export default function Home() {
   }, []);
 
   const login = async () => {
+    if (typeof window.ethereum === 'undefined') {
+      alert("pls install metamask to use this feature");
+      return;
+    }
+    
     const provider = new ethers.BrowserProvider(window.ethereum, "any");
     const signer = await provider.getSigner();
     await provider.send("eth_requestAccounts", []);
