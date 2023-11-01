@@ -8,9 +8,6 @@ export default function Home() {
   const contractTxId = "bts0yJq2-1JxO0R2Qco1yg2OFLdz4U2dmOfeFLxhst4";
   const sonarLink = `https://sonar.warp.cc/?#/app/contract/${contractTxId}`;
 
-  
-
-  
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [country, setCountry] = useState("");
@@ -19,7 +16,6 @@ export default function Home() {
   const [user, setUser] = useState(null);
   const [isWalletConnected, setIsWalletConnected] = useState(false);
 
-  
   const setupWeaveDB = async () => {
     try {
       const _db = new WeaveDB({
@@ -38,8 +34,8 @@ export default function Home() {
   }, []);
 
   const login = async () => {
-    const provider = new ethers.BrowserProvider(window.ethereum, "any")
-    const signer = await provider.getSigner()
+    const provider = new ethers.BrowserProvider(window.ethereum, "any");
+    const signer = await provider.getSigner();
     await provider.send("eth_requestAccounts", []);
     const wallet_address = await signer.getAddress();
 
@@ -102,27 +98,21 @@ export default function Home() {
   const handleAddClick = async () => {
     const UserData = { name: name, age: Number(age), country: country };
 
-
     try {
-     
       const res = await db.add(UserData, Workers);
-      console.log("submitted: ",res)
-      if(res) {
-        alert('Data submitted sucessfully')
+      console.log("submitted: ", res);
+      if (res) {
+        alert("Data submitted sucessfully");
       } else {
-        alert('Error while submitting')
+        alert("Error while submitting");
       }
-      
 
-
-  
       console.log(res);
     } catch (e) {
       console.error(e);
     }
   };
 
-  
   return (
     <>
       <div
@@ -132,17 +122,17 @@ export default function Home() {
       >
         <br />
         <br />
-        <div className="flex justify-end px-[50px]">
+        <div className="flex justify-end px-[30px] sm:px-[50px]">
           {!isNil(user) ? (
             <button
-              className="bg-[#3640fa] border rounded  px-4 py-4"
+              className="bg-[#6442af] border rounded  px-4 py-4"
               onClick={logout}
             >
               {user.wallet.slice(0, 5)}...{user.wallet.slice(-5)}
             </button>
           ) : (
             <button
-              className="bg-[#3640fa] border rounded  px-4 py-4"
+              className="bg-[#6442af] border rounded  px-4 py-4"
               onClick={handleLoginClick}
             >
               Connect Wallet
@@ -150,13 +140,13 @@ export default function Home() {
           )}
         </div>
 
-        <h1 className="flex pb-[150px] mx-[60px] text-center sm:px-[0px] font-semibold leading-snug justify-center text-3xl sm:text-5xl justify-center py-[40px]">
+        <h1 className="flex pb-[100px] sm:pb-[150px] px-[60px] sm:mx-[0px] text-center sm:px-[0px] font-semibold leading-snug justify-center text-5xl sm:text-5xl justify-center py-[40px]">
           Dive into a Decentralised Database with Weavedb
         </h1>
 
         <form
           className="grid items-center 
-          justify-center px-[40px] sm:px-[0px]"
+          justify-center px-[60px] sm:px-[0px]"
         >
           {/* Name */}
           <div
@@ -216,21 +206,23 @@ export default function Home() {
             />
           </div>
 
-
           {!isWalletConnected ? (
-            <button onClick={ async() => {alert('Connect your wallet pls')} } className="bg-[#3640fa] border rounded  px-2 py-2">
-             pls connect your wallet
-            </button> 
+            <button
+              onClick={async () => {
+                alert("Connect your wallet pls");
+              }}
+              className="bg-[#6442af] border rounded  px-2 py-2"
+            >
+              pls connect your wallet
+            </button>
           ) : (
             <button
-              className="bg-[#3640fa] border rounded  px-2 py-2"
+              className="bg-[#6442af] border rounded  px-2 py-2"
               onClick={handleAddClick}
-
             >
               Submit
             </button>
           )}
-
 
           <a
             className="grid items-center 
